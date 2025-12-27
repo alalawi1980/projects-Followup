@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>إدارة الصلاحيات</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<!-- Logout Modal -->
+<div id="logoutModal" class="modal-overlay">
+  <div class="modal-card">
+    <h3>تسجيل الخروج</h3>
+    <p>هل أنت متأكد أنك تريد تسجيل الخروج من النظام؟</p>
+
+    <div class="modal-actions">
+      <button class="btn secondary" onclick="closeLogoutModal()">إلغاء</button>
+      <button class="btn danger" onclick="confirmLogout()">تسجيل خروج</button>
+    </div>
+  </div>
+</div>
+
+<body>
+<div class="container">
+    <a class="toplink" href="projects.html"><i class="fa-solid fa-arrow-right"></i> القائمة الرئيسية</a>
+    <h1><i class="fa-solid fa-users-gear"></i> إدارة صلاحيات الجهات</h1>
+    
+    <div class="section">
+        <h3>إضافة بيانات دخول لجهة</h3>
+        <form onsubmit="saveAccess(event)">
+            <div class="grid">
+                <div class="form-group">
+                    <label>اختر الجهة</label>
+                    <select id="entitySelect" required onchange="autoFill()"><option value="">-- تحميل --</option></select>
+                </div>
+                <div class="form-group"><label>اسم المستخدم</label><input type="text" id="newUser" required></div>
+                <div class="form-group"><label>كلمة المرور</label><input type="text" id="newPass" required></div>
+            </div>
+            <div class="btn-row" style="justify-content: flex-start;">
+                <button type="submit">حفظ</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="section">
+        <h3>المستخدمون الحاليون</h3>
+        <table class="dataTable">
+            <thead><tr><th>الجهة</th><th>اسم المستخدم</th><th>كلمة المرور</th><th>إجراء</th></tr></thead>
+            <tbody id="usersBody"></tbody>
+        </table>
+    </div>
+</div>
+<script src="auth.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        checkAuth('admin');
+        loadEntities();
+        renderTable();
+    });
+
+    function loadEntities() {
+        const data = JSON.parse(localStorage.getItem("icv_projects_v2") || "[]");
+        const ents = [...new Set(data.map(p => (p.entity||"").trim()).filter(e=>e))].sort();
+        const sel = document.getElementById('entitySelect');
+        sel.innerHTML = '<option value="">-- اختر الجهة --</option>';
+        ents.forEach(e => sel.innerHTML += `<option value="${e}">${e}</option>`);
+    }
+
+    function autoFill() {
+        const e = document.getElementById('entitySelect').value;
+        if(e) document.getElementById('newUser').value = e.replace(/\s+/g, '_');
+    }
+
+    function saveAccess(e) {
+        e.preventDefault();
+        const ent = document.getElementById('entitySelect').value;
+        const u = document.getElementById('newUser').value;
+        const p = document.getElementById('newPass').value;
+        saveUserCredentials(u, p, ent);
+        alert('تم الحفظ');
+        renderTable();
+    }
+
+    function renderTable() {
+        const users = getAllUsers().filter(u => u.role !== 'admin');
+        const body = document.getElementById('usersBody');
+        body.innerHTML = users.map(u => `
+            <tr>
+                <td>${u.entity}</td><td>${u.username}</td><td>${u.password}</td>
+                <td><button class="btn-sm btn-danger" onclick="del('${u.username}')">حذف</button></td>
+            </tr>
+        `).join('') || '<tr><td colspan="4" style="text-align:center">لا يوجد</td></tr>';
+    }
+
+    function del(u) {
+        if(confirm('حذف؟')) { deleteUser(u); renderTable(); }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+/* --- إعدادات الخطوط والألوان العامة --- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #2ecc71;
+  --primary-dark: #27ae60;
+  --secondary: #3498db;
+  --danger: #e74c3c;
+  --bg-color: #f4f6f9;
+  --text-dark: #2c3e50;
+  --text-light: #7f8c8d;
+  --radius: 12px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 20px;
+  direction: rtl;
+}
+
+/* --- Header & Auth --- */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-right: 5px solid var(--secondary);
+  font-family: 'Cairo', sans-serif;
+}
+
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+}
+.btn-danger { background-color: #e74c3c; color: white; transition: 0.3s; }
+.btn-danger:hover { background-color: #c0392b; }
+
+.btn-secondary { background-color: #95a5a6; color: white; transition: 0.3s; }
+.btn-secondary:hover { background-color: #7f8c8d; }
+.btn-logout {
+  background: #e74c3c !important;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Cairo';
+}
+
+.btn-admin-link {
+  background: #2ecc71;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
+.btn-admin-link:hover { background: #27ae60; }
+
+/* --- Login Styles --- */
+.login-wrapper {
+  display: flex; justify-content: center; align-items: center; min-height: 80vh;
+}
+.login-card {
+  background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%; max-width: 400px; text-align: center;
+}
+.login-card h2 { color: #0b3c5d; margin-bottom: 20px; }
+.login-card input {
+  width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 10px;
+  font-size: 1rem; font-family: 'Cairo'; box-sizing: border-box;
+}
+.login-card button {
+  width: 100%; padding: 15px; background: #0b3c5d; color: white; border: none;
+  border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
+}
+.login-card button:hover { background: #2c3e50; }
+
+/* --- Container & General --- */
+.container {
+  max-width: 98%; margin: 0 auto; background: white; padding: 30px;
+  border-radius: var(--radius); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+h1, h2, h3 { color: var(--text-dark); margin-top: 0; }
+h1 { text-align: center; margin-bottom: 10px; font-weight: 800; }
+
+.small-note { text-align: center; color: var(--text-light); font-size: 0.9rem; margin-bottom: 25px; }
+
+a { text-decoration: none; color: var(--secondary); transition: 0.3s; }
+a:hover { color: #2980b9; }
+
+.toplink { display: inline-block; margin-bottom: 20px; font-weight: 700; border-bottom: 2px solid transparent; }
+.toplink:hover { border-bottom-color: var(--secondary); }
+
+/* --- Sections & Forms --- */
+.section {
+  background: #fff; border: 1px solid #eee; border-radius: var(--radius); padding: 25px;
+  margin-bottom: 25px; border-right: 5px solid var(--primary); transition: transform 0.2s;
+}
+.section h3 { color: var(--primary-dark); border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 20px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #34495e; }
+
+input, select, textarea {
+  padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo', sans-serif;
+  font-size: 0.95rem; width: 100%; box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--secondary); }
+input[readonly] { background-color: #f8f9fa; color: #7f8c8d; }
+textarea { resize: vertical; min-height: 80px; }
+
+/* --- Buttons --- */
+.btn-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; margin-bottom: 20px; }
+.btn, button {
+  padding: 12px 25px; border: none; border-radius: 50px; font-family: 'Cairo', sans-serif;
+  font-weight: 700; font-size: 1rem; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+  color: white; text-decoration: none;
+}
+.btn.primary, button[type="submit"] { background-color: var(--primary); }
+.btn.secondary, button.btn-secondary { background-color: var(--text-dark); }
+.btn.danger, button.btn-danger { background-color: var(--danger); }
+.btn.info { background-color: var(--secondary); }
+
+/* --- Tables --- */
+table.dataTable { width: 100% !important; border-collapse: separate !important; }
+table.dataTable thead th { background-color: #34495e; color: white; padding: 12px; white-space: nowrap; font-size: 0.9rem; }
+table.dataTable tbody td { padding: 10px; white-space: nowrap; vertical-align: middle; }
+.badge { padding: 5px 10px; border-radius: 20px; color: white; font-size: 0.8em; }
+.badge.success { background: #27ae60; }
+.badge.warning { background: #f39c12; }
+.badge.danger { background: #c0392b; }
+.badge.info { background: #2980b9; }
+
+/* ================= Logout Modal (Modern) ================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  animation: modalPop 0.25s ease;
+  font-family: 'Cairo', sans-serif;
+}
+
+.modal-card h3 {
+  margin: 0 0 10px;
+  color: #0b3c5d;
+  font-weight: 700;
+}
+
+.modal-card p {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}

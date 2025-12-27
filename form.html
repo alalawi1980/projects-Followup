@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج المحتوى المحلي</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+  <a class="toplink" href="projects.html"><i class="fa-solid fa-arrow-right"></i> القائمة</a>
+  <h1>نموذج متابعة المحتوى المحلي</h1>
+  <form id="projectForm">
+    <div class="section"><h3>1. بيانات عامة</h3><div class="grid">
+        <div class="form-group"><label>الجهة</label><input name="entity"></div>
+        <div class="form-group"><label>اسم المشروع</label><input name="project_name"></div>
+        <div class="form-group"><label>رقم ونوع المناقصة</label><input name="tender_no_type"></div>
+        <div class="form-group"><label>حالة المشروع</label><select name="project_status"><option value="جاري التنفيذ">جاري التنفيذ</option><option value="منجز">منجز</option><option value="متأخر">متأخر</option></select></div>
+        <div class="form-group"><label>المجال</label><input name="sector"></div>
+        <div class="form-group"><label>الاستشاري</label><input name="consultant"></div>
+        <div class="form-group"><label>المقاول / الشركة المنفذة</label><input name="contractor"></div>
+        <div class="form-group"><label>قيمة المشروع (ر.ع)</label><input type="number" name="project_value" id="project_value"></div>
+        <div class="form-group"><label>آخر تحديث (الربع)</label><select name="quarter"><option value="Q1">Q1</option><option value="Q2">Q2</option><option value="Q3">Q3</option><option value="Q4">Q4</option></select></div>
+        <div class="form-group"><label>آخر تحديث (السنة)</label><input type="number" name="year" value="2025"></div>
+    </div></div>
+
+    <div class="section"><h3>2. القوى العاملة</h3><div class="grid">
+        <div class="form-group"><label>المستهدف للعمانيين (خطة)</label><input id="tar_omanis" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحقق للعمانيين (تراكمي)</label><input id="ach_omanis" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المستهدف لغير العمانيين (خطة)</label><input id="tar_non" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحقق لغير العمانيين (تراكمي)</label><input id="ach_non" type="number" oninput="calc()"></div>
+    </div>
+    <div class="grid" style="margin-top:15px; background:#f0f8ff; padding:15px;">
+        <div class="form-group"><label>نسبة المحقق للعمانيين %</label><input id="pct_omanis" readonly></div>
+        <div class="form-group"><label>نسبة المحقق لغير العمانيين %</label><input id="pct_non" readonly></div>
+        <div class="form-group"><label>نسبة التعمين الكلية %</label><input id="pct_omanization" readonly></div>
+    </div></div>
+
+    <div class="section"><h3>3. التكاليف والرواتب</h3><div class="grid">
+        <div class="form-group"><label>تكلفة الرواتب للعمانيين</label><input id="sal_omanis_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (رواتب عمانيين ×0.8)</label><input id="lc_omanis_08" readonly></div>
+        <div class="form-group"><label>تكلفة الرواتب لغير العمانيين</label><input id="sal_non_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (رواتب غير عمانيين ×0.2)</label><input id="lc_non_02" readonly></div>
+    </div></div>
+
+    <div class="section"><h3>4. السلع والخدمات</h3><div class="grid">
+        <div class="form-group"><label>تكلفة "صنع في عمان"</label><input id="made_oman_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (صنع في عمان ×0.7)</label><input id="lc_made_oman_07" readonly></div>
+        <div class="form-group"><label>تكلفة مورد محلي</label><input id="sup_local_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (مورد محلي ×0.18)</label><input id="lc_sup_local_018" readonly></div>
+        <div class="form-group"><label>تكلفة استيراد مباشر</label><input id="import_direct_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (استيراد مباشر ×0.06)</label><input id="lc_import_direct_006" readonly></div>
+        <div class="form-group"><label>تكلفة مورد SMEs</label><input id="sup_smes_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (مورد SMEs ×0.18)</label><input id="lc_sup_smes_018" readonly></div>
+        <div class="form-group"><label>تكلفة المزودين المحليين</label><input id="prov_local_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (مزود محلي ×0.7)</label><input id="lc_prov_local_07" readonly></div>
+        <div class="form-group"><label>تكلفة المزود الأجنبي</label><input id="prov_foreign_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (مزود أجنبي ×0.1)</label><input id="lc_prov_foreign_01" readonly></div>
+        <div class="form-group"><label>تكلفة المزود SMEs</label><input id="prov_smes_project" type="number" oninput="calc()"></div>
+        <div class="form-group"><label>المحتوى المحلي (مزود SMEs ×0.7)</label><input id="lc_prov_smes_07" readonly></div>
+    </div></div>
+
+    <div class="section"><h3>5. النتائج</h3><div class="grid">
+        <div class="form-group"><label>إجمالي التكلفة</label><input id="total_cost" readonly></div>
+        <div class="form-group"><label>إجمالي المحتوى المحلي</label><input id="total_lc" readonly></div>
+        <div class="form-group"><label>نسبة المحتوى المحلي %</label><input id="pct_lc" readonly></div>
+        <div class="form-group"><label>الملاحظات</label><textarea></textarea></div>
+    </div></div>
+
+    <div class="btn-row">
+      <button type="button" onclick="saveProject()">حفظ المشروع</button>
+      <button type="button" class="btn-secondary" onclick="window.location.href='dashboard.html'">الداشبورد</button>
+    </div>
+  </form>
+</div>
+<script src="auth.js"></script>
+<script src="calculations.js"></script>
+<script src="prefill.js"></script>
+<script src="form.js"></script>
+</body>
+</html>

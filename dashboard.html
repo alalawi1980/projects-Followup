@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>لوحة المؤشرات</title>
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+  <div style="text-align: left; margin-bottom: 10px;">
+    <a href="projects.html" style="text-decoration: none; color: #0b3c5d; font-weight: bold;"><i class="fa-solid fa-arrow-right"></i> القائمة الرئيسية</a>
+  </div>
+  <h1>لوحة مؤشرات الأداء (KPIs)</h1>
+  <div class="slicers">
+    <div class="slicer"><label>الجهة</label><select id="sl_entity" onchange="onEntityChange()"></select></div>
+    <div class="slicer"><label>المشروع</label><select id="sl_project" onchange="refresh()"></select></div>
+    <div class="slicer"><label>الربع</label>
+        <select id="sl_quarter" onchange="refresh()">
+            <option value="">الكل</option><option value="Q1">Q1</option><option value="Q2">Q2</option><option value="Q3">Q3</option><option value="Q4">Q4</option>
+        </select>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><span>المشاريع</span><strong id="kpi_projects">0</strong></div>
+    <div class="card"><span>التكلفة الكلية</span><strong id="kpi_total_cost">0</strong></div>
+    <div class="card"><span>المحتوى المحلي</span><strong id="kpi_total_lc">0</strong></div>
+    <div class="card"><span>النسبة %</span><strong id="kpi_lc_percent">0%</strong></div>
+  </div>
+  <div class="charts">
+    <div class="chart-box"><h3>توزيع المحتوى المحلي</h3><canvas id="lcPie"></canvas></div>
+    <div class="chart-box">
+      <h3>أعلى المشاريع</h3><div id="top5List" class="top5"></div>
+      <div class="top-entities-section"><h3>أعلى الجهات</h3><div id="top5EntitiesList" class="top5"></div></div>
+    </div>
+  </div>
+</div>
+<script src="auth.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

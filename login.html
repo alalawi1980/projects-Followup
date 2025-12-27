@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تسجيل الدخول</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="login-wrapper">
+  <div class="login-card">
+    <div style="font-size: 3rem; color: #2ecc71; margin-bottom: 10px;">
+        <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <h2>نظام متابعة المحتوى المحلي</h2>
+    <p class="small-note">سجل دخولك للمتابعة</p>
+    
+    <form onsubmit="handleLogin(event)">
+        <input type="text" id="username" placeholder="اسم المستخدم" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button type="submit">دخول</button>
+    </form>
+    
+    <div id="error-msg" style="color: #e74c3c; margin-top: 15px; display: none; font-weight: bold;">
+        بيانات الدخول غير صحيحة
+    </div>
+  </div>
+</div>
+<script src="auth.js"></script>
+<script>
+function handleLogin(e) {
+    e.preventDefault();
+    const u = document.getElementById('username').value.trim();
+    const p = document.getElementById('password').value.trim();
+    const result = attemptLogin(u, p);
+    
+    if (result.success) {
+        if(result.role === 'admin') window.location.href = 'admin_users.html';
+        else window.location.href = 'projects.html';
+    } else {
+        document.getElementById('error-msg').style.display = 'block';
+    }
+}
+</script>
+</body>
+</html>
